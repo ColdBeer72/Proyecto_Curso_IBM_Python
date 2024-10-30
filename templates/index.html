@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Inventario de Productos</h2>
+
+<form method="POST" action="{{ url_for('buscar_producto') }}" class="busqueda-form">
+    <input type="text" name="nombre" placeholder="Buscar producto por nombre" required>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if productos %}
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto['nombre'] }}</td>
+            <td>{{ producto['categoria'] }}</td>
+            <td>{{ producto['precio'] }} €</td>
+            <td>{{ producto['cantidad'] }}</td>
+            <td>
+                <a href="{{ url_for('actualizar_producto', nombre=producto['nombre']) }}">Actualizar</a> |
+                <a href="{{ url_for('eliminar_producto', nombre=producto['nombre']) }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay productos en el inventario.</p>
+{% endif %}
+{% endblock %}

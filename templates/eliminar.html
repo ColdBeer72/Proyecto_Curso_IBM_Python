@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Eliminar Producto</h2>
+<p>¿Estás seguro de que deseas eliminar el producto <strong>{{ nombre }}</strong>?</p>
+
+<form method="POST" action="{{ url_for('eliminar_producto', nombre=nombre) }}">
+    <button type="submit">Eliminar</button>
+    <a href="{{ url_for('index') }}">Cancelar</a>
+</form>
+{% endblock %}

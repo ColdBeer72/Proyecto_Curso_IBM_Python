@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Actualizar Producto</h2>
+<form method="POST" action="{{ url_for('actualizar_producto', nombre=producto['nombre']) }}">
+    <label for="precio">Nuevo Precio:</label>
+    <input type="number" id="precio" name="precio" value="{{ producto['precio'] }}" step="0.01" required>
+
+    <label for="cantidad">Nueva Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" value="{{ producto['cantidad'] }}" required>
+
+    <button type="submit">Actualizar Producto</button>
+</form>
+{% endblock %}
